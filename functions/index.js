@@ -2,6 +2,7 @@ const functions = require('firebase-functions');
 const firebase = require('firebase-admin');
 const express = require('express');
 const bodyParser = require('body-parser');
+const requestValidations = require('./validations');
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -31,7 +32,7 @@ app.get('/api/posts', (req, res) => {
 
 // Create new post
 
-app.post('/api/posts', (req, res) => {
+app.post('/api/posts',requestValidations.apiRequest,requestValidations.validateCreatePost, (req, res) => {
     postRef.push({title: req.body.title,body: req.body.body})
         .then(data => {
 

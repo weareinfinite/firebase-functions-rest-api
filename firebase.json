@@ -24,8 +24,8 @@
         "destination": "/index.html"
       },
       {
-        "source": "/hello",
-        "function": "helloWorld"
+        "source": "/api/**",
+        "function": "app"
       }
     ]
   },

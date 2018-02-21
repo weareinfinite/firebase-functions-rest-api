@@ -30,6 +30,14 @@ app.get('/api/posts', (req, res) => {
         .then(snap => res.json(snap.val()))
 })
 
+// get single post
+
+app.get('/api/posts/:id', (req, res) => {
+
+    postRef.child(req.params.id).once('value')
+            .then(snap => res.json(snap.val()))
+})
+
 // Create new post
 
 app.post('/api/posts',requestValidations.apiRequest,requestValidations.validateCreatePost, (req, res) => {
@@ -39,6 +47,13 @@ app.post('/api/posts',requestValidations.apiRequest,requestValidations.validateC
             res.json({message: 'Yep! post created successfully!'})
 
         })
+})
+
+app.delete('/api/posts/:id', (req, res) => {
+
+    postRef.child(req.params.id).remove()
+        .then(() => res.json({message: "Post deleted!!!"}))
+        .catch((err) => res.json({message:'Could not delete post!!!'}))
 })
 
 exports.app = functions.https.onRequest(app);

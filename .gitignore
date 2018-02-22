@@ -57,3 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+
+# Parcel client bundling
+dist/
+.cache
+public/
+client-src/src/config.js

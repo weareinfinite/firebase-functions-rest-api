@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import HomePage from './components/pages/HomePage';
+import LoginPage from './components/pages/LoginPage';
+
 export default class App extends Component {
 
 
     render() {
         return(
+            <Router>
             <div id="wrapper" className="container">
                 <Header/>
                 <main>
-                    <div className="empty">
-                        <div className="empty-icon">
-                            <i className="icon icon-people"></i>
-                        </div>
-                        <p className="empty-title h5">Welcome to Firebase Client App</p>
-                        <p className="empty-subtitle">Click the button to start a conversation.</p>
-                        <div className="empty-action">
-                            <button className="btn btn-primary">Send a message</button>
-                        </div>
-                    </div>
+                    <Route exact path="/" component={ HomePage } />
+                    <Route exact path="/login" component={ LoginPage } />
                 </main>
             </div>
+            </Router>
         )
     }
 }

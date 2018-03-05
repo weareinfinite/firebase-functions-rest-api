@@ -18,13 +18,14 @@
     ],
     "rewrites": [
       {
-        "source": "/",
-        "destination": "/index.html"
-      },
-      {
         "source": "/api/**",
         "function": "app"
+      },
+      {
+        "source": "/**",
+        "destination": "/index.html"
       }
+      
     ]
   },
   "storage": {

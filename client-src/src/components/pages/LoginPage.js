@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { loginWithEmailPassword } from '../../api';
 export default class  LoginPage extends Component {
 
     constructor(props) {
@@ -13,6 +13,7 @@ export default class  LoginPage extends Component {
         }
 
         this.inputChange = this.inputChange.bind(this);
+        this.onSubmitHandler = this.onSubmitHandler.bind(this);
 
         document.title = 'Login';
 
@@ -23,10 +24,28 @@ export default class  LoginPage extends Component {
         this.setState({[e.target.name]: e.target.value })
     }
 
+    onSubmitHandler(e) {
+        alert(12)
+        let { email, password } = this.state;
+        e.preventDefault();
+
+
+        loginWithEmailPassword(email, password)
+            .then((res) => {
+
+                console.log(res)
+                this.props.history.push('/dashboard');
+            })
+            .catch(err => {
+                console.log(err.message)
+                // TODO: Handle Error Message 
+            })
+    }
+
     render() {
         return(
            <div className="container login-form-container">
-        <form>
+        <form onSubmit={ this.onSubmitHandler }>
         <h2>Login</h2>
         <div className="form-group has-success">
             <label className="form-label" htmlFor="input-example-1">Email</label>
@@ -39,13 +58,7 @@ export default class  LoginPage extends Component {
             <p className="form-input-hint">The password is invalid.</p>
         </div>
 
-       
-        <div className="form-group">
-            <label className="form-checkbox is-error">
-            <input type="checkbox" />
-            <i className="form-icon"></i> Remember me
-            </label>
-        </div>
+    
         <div className="form-group">
             <button className="btn btn-primary">LOGIN</button>
         </div>

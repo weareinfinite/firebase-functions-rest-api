@@ -7,6 +7,7 @@ import LoginPage from './components/pages/LoginPage';
 import DashboardPage from './components/pages/DashboardPage';
 
 import firebaseapp from './firebaseapp'
+import store from './store';
 
 export default class App extends Component {
 
@@ -14,6 +15,7 @@ export default class App extends Component {
         //TODO: Add user data to redux state
         firebaseapp.auth().onAuthStateChanged(authUser => {
             console.log('onAuthStateChange::', authUser);
+            store.dispatch({type: 'AUTH_USER', payload: authUser});
         })
     }
 

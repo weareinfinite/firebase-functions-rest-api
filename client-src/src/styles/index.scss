@@ -1,4 +1,6 @@
 
+//$primary-color:red;
+
 @import "../../../node_modules/spectre.css/src/spectre";
 @import '../../../node_modules/loaders.css/src/animations/ball-pulse-sync.scss';
 @import '../../../node_modules/loaders.css/src/animations/ball-scale-multiple.scss';
@@ -28,4 +30,9 @@
 
 header .btn-link.active {
     border-bottom: 1px solid;
+}
+
+.btn:active {
+    outline: 0;
+    border: none;
 }

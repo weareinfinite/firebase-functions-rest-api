@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink , withRouter } from 'react-router-dom';
+import { logout } from '../api'
+
 
 class Header extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.doLogout = this.doLogout.bind(this);
+    }
+
+    doLogout() {
+        logout().then(() => {
+            this.props.history.push('/');
+        })
+    }
     render() {
         const { user } = this.props;
         return (
@@ -12,6 +26,7 @@ class Header extends Component {
                 <NavLink exact activeClassName="active" className="btn btn-link" to="/">Home</NavLink>
             { !user && <NavLink exact activeClassName="active" className="btn btn-link" to="/login">Login</NavLink> }
             { user && <NavLink exact activeClassName="active" className="btn btn-link" to="/dashboard">Dashboard</NavLink> }
+            { user && <button  className="btn btn-link" onClick={ this.doLogout }>Logout</button> }
                 <a href="https://github.com/weareinfinite/firebase-functions-rest-api" className="btn btn-link">GitHub</a>
             </section>
         </header>
@@ -27,4 +42,4 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps, null)(Header);
+export default withRouter(connect(mapStateToProps, null)(Header));

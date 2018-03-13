@@ -6,5 +6,5 @@ export function loginWithEmailPassword(email, password)  {
 }
 
 export const logout = () => {
-    return firebaseApp.auth().logout()
+    return firebaseApp.auth().signOut();
 }

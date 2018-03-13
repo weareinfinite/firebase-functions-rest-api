@@ -1,13 +1,6 @@
-export default function(state = {user: null}, action) {
+import { combineReducers } from 'redux';
+import UserReducer  from './user-reducer';
 
-    switch(action.type) {
-        case 'AUTH_USER' : 
-            let _state = {...state, user: action.payload }
-            console.info('REDUCER :: AUTH_USER')
-            return _state;
-        default:
-            return state;
-    }
-
-    
-}
+export default combineReducers({
+    user: UserReducer
+})

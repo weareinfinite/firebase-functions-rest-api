@@ -1,11 +1,30 @@
 
 @import "../../../node_modules/spectre.css/src/spectre";
+@import '../../../node_modules/loaders.css/src/animations/ball-pulse-sync.scss';
+@import '../../../node_modules/loaders.css/src/animations/ball-scale-multiple.scss';
+@import '../../../node_modules/loaders.css/src/animations/pacman.scss';
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}
+
 #wrapper {
     max-width: 1200px;
     margin:0 auto;
 }
 
+.app-laoding {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @import "./loginpage";
+
 
 header .btn-link.active {
     border-bottom: 1px solid;

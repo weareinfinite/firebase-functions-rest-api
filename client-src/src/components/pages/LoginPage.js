@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Loader  from 'react-loaders';
 import { loginWithEmailPassword } from '../../api';
-export default class  LoginPage extends Component {
+class  LoginPage extends Component {
 
     constructor(props) {
 
         super(props)
 
         this.state = {
-            email: 'sarath@gmail.com',
-            password: 'somepass',
+            email: '',
+            password: '',
+            isLoading: false,
             errors: null
         }
 
@@ -25,24 +29,28 @@ export default class  LoginPage extends Component {
     }
 
     onSubmitHandler(e) {
-        alert(12)
+        this.setState({ isLoading: true})
         let { email, password } = this.state;
         e.preventDefault();
 
 
         loginWithEmailPassword(email, password)
             .then((res) => {
-
+                this.setState({ isLoading: false})
                 console.log(res)
                 this.props.history.push('/dashboard');
             })
             .catch(err => {
+                this.setState({ isLoading: true})
                 console.log(err.message)
                 // TODO: Handle Error Message 
+                
             })
     }
 
     render() {
+        const { user } = this.props;
+        if(user) return (<Redirect to="/dashboard"></Redirect>)
         return(
            <div className="container login-form-container">
         <form onSubmit={ this.onSubmitHandler }>
@@ -67,4 +75,11 @@ export default class  LoginPage extends Component {
         )
     }
 }
-    
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, null)(LoginPage);

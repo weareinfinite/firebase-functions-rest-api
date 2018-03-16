@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Loader  from 'react-loaders';
 
+import Footer from './components/footer/Footer';
+
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import DashboardPage from './components/pages/DashboardPage';
@@ -52,7 +54,9 @@ export default class App extends Component {
                     <Route exact path="/" component={ HomePage } />
                     <Route exact path="/login" component={ LoginPage } />
                     <Route exact path="/dashboard" component={ DashboardPage } />
-                </main> </React.Fragment>}
+                </main> 
+                <Footer></Footer>
+                </React.Fragment>}
             </div>
             </Router>
         )

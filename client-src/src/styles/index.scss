@@ -16,6 +16,15 @@
 #wrapper {
     max-width: 1200px;
     margin:0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+main {
+    flex-grow: 1;
+    flex-shrink: 0;
 }
 
 .app-laoding {
@@ -35,4 +44,10 @@ header .btn-link.active {
 .btn:active {
     outline: 0;
     border: none;
+}
+
+footer {
+    background-color: $primary-color;
+    color: #dedede;
+    flex-grow: 0;
 }

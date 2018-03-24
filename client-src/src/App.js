@@ -1,6 +1,8 @@
 import React, { Component ,} from 'react';
 import Header from './components/Header';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route , Switch } from 'react-router-dom';
+
+import AuthGaurd from './components/auth/auth-gaurd';
 
 import Loader  from 'react-loaders';
 
@@ -51,9 +53,11 @@ export default class App extends Component {
                 { !auth_changed && this.loadingWrapper() }
                 { auth_changed && <React.Fragment> <Header/>
                 <main>
-                    <Route exact path="/" component={ HomePage } />
-                    <Route exact path="/login" component={ LoginPage } />
-                    <Route exact path="/dashboard" component={ DashboardPage } />
+                    <Switch>
+                        <Route exact path="/" component={ HomePage } />
+                        <Route exact path="/login" component={ LoginPage } />
+                        <AuthGaurd exact path="/dashboard" component={ DashboardPage } />
+                    </Switch>
                 </main> 
                 <Footer></Footer>
                 </React.Fragment>}

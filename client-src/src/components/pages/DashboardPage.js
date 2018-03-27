@@ -8,16 +8,25 @@ export default class  DashboardPage extends Component {
    render (){
 
         return (
-            <div className="empty">
-                <div className="empty-icon">
-                    <i className="icon icon-people"></i>
-                </div>
-                <p className="empty-title h5">Welcome to Dashboard</p>
-                <p className="empty-subtitle">Click the button to start a conversation.</p>
-                <div className="empty-action">
-                    <button className="btn btn-primary">Send a message</button>
+            <div>
+            
+
+                <div className="container">
+                    <h2>Dashboard </h2>
+                    <div className="columns">
+                        <div className="column col-4">
+                            <a className="btn btn-primary btn-tile">Leads</a>
+                        </div>
+                        <div className="column col-4">
+                            <a className="btn btn-success btn-tile">Contacts</a>
+                        </div>
+                        <div className="column col-4">
+                            <a className="btn btn-error btn-tile">Settings</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
              
         )
 

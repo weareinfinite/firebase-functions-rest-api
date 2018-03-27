@@ -6,6 +6,17 @@
 @import '../../../node_modules/loaders.css/src/animations/ball-scale-multiple.scss';
 @import '../../../node_modules/loaders.css/src/animations/pacman.scss';
 
+// Custom Components
+
+@import './tile-buttons';
+
+/* Remove Button box shadow */
+.btn-link:focus, .btn-link:active {
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
 .loader-hidden {
   display: none;
 }

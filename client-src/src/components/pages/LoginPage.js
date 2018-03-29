@@ -18,6 +18,7 @@ class  LoginPage extends Component {
 
         this.inputChange = this.inputChange.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.removeErrorMessage = this.removeErrorMessage.bind(this);
 
         document.title = 'Login';
 
@@ -40,11 +41,17 @@ class  LoginPage extends Component {
                 this.props.history.push('/dashboard');
             })
             .catch(err => {
-                this.setState({ isLoading: true})
-                console.log(err.message)
                 // TODO: Handle Error Message 
+                this.setState({ isLoading: true, errors: err.message})
+                
                 
             })
+    }
+
+
+    removeErrorMessage() {
+
+        this.setState({ errors: null})
     }
 
     render() {
@@ -54,6 +61,13 @@ class  LoginPage extends Component {
            <div className="container login-form-container">
         <form onSubmit={ this.onSubmitHandler }>
         <h2>Login</h2>
+            {/* Show Error Message  */}
+            { this.state.errors && 
+                <div className="toast toast-error">
+                    <button type="button" onClick={ this.removeErrorMessage } className="btn btn-clear float-right"></button>
+                    { this.state.errors }
+                </div>
+            }
         <div className="form-group has-success">
             <label className="form-label" htmlFor="input-example-1">Email</label>
             <input className="form-input" type="email" name="email" onChange={ this.inputChange } value={ this.state.email } placeholder="Email" />
